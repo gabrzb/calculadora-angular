@@ -54,7 +54,5 @@ Isso irá redefinir a política que pode interferir no processo descrito anterio
 
 ---
 
-## 👨‍🎓 Responsável do Projeto
-
-- Gabriel Zaniqueli (2205156)
+## 👨‍🎓 Responsável do Projeto: Gabriel Zaniqueli (2205156)
 
