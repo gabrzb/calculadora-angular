@@ -20,23 +20,23 @@ Antes de começar, verifique se você tem os seguintes requisitos instalados:
 Siga estas etapas para configurar e executar o projeto localmente:
 
 1. **Clone o repositório:**
-```bash
+```powershell
 git clone https://github.com/gabrzb/calculadora-angular.git
 ```
 2. **Navegue até a pasta do projeto:**
-```bash
+```powershell
 cd calculadora-angular
 ```
 3. **Instale o Angular CLI:**
-```bash
+```powershell
 npm i -g @angular/cli
 ```
 4. **Instale todos os módulos necessários:**
-```bash
+```powershell
 npm install
 ```
 5. **Inicie a aplicação:**
-```bash
+```powershell
 ng serve --open
 ```
 
@@ -54,8 +54,7 @@ Isso irá redefinir a política que pode interferir no processo descrito anterio
 
 ---
 
-## 👨‍🎓 Responsáveis do Projeto
+## 👨‍🎓 Responsável do Projeto
 
 - Gabriel Zaniqueli (2205156)
-- Nicolas Rossetto (2305916)
 
