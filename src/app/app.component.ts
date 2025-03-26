@@ -10,7 +10,7 @@ import { Component } from '@angular/core';
       </div>
 
       <div class="teclado">
-        <button class="botao operador" (click)="limpar()" aria-label="Limpar">C</button>
+        <button class="botao operador" (click)="limparDisplay()" aria-label="Limpar">C</button>
         <button class="botao operador" (click)="adicionarOperador('/')" aria-label="Dividir">/</button>
         <button class="botao operador" (click)="adicionarOperador('*')" aria-label="Multiplicar">×</button>
         <button class="botao operador" (click)="adicionarOperador('-')" aria-label="Subtrair">−</button>
@@ -37,7 +37,7 @@ import { Component } from '@angular/core';
   styles: [],
 })
 export class AppComponent {
-  // Parametrização
+  // Variáveis de estado da calculadora
   display: string = '';
   primeiroValor: number | null = null;
   operador: string | null = null;
@@ -48,7 +48,7 @@ export class AppComponent {
       this.display = valor;
       this.aguardandoSegundoValor = false;
     } else {
-      // Adiciona números com mais de uma casa decimal (10, 215, 2024,...)
+      // Concatena números ao valor atual caso não espere o segundo número
       this.display = this.display === '0' ? valor : this.display + valor;
     }
   }
@@ -60,6 +60,7 @@ export class AppComponent {
       return;
     }
 
+    // Adiciona o ponto apenas se não existir
     if (!this.display.includes('.') && this.display !== '') {
       this.display += '.';
     } else if (this.display === '') {
@@ -69,7 +70,6 @@ export class AppComponent {
   }
 
   adicionarOperador(operador: string): void {
-
     if (!this.aguardandoSegundoValor) {
 
       if (this.primeiroValor === null) {
@@ -77,6 +77,7 @@ export class AppComponent {
       } else if (this.operador) {
         this.calcular();
       }
+      
       this.operador = operador;
       this.aguardandoSegundoValor = true;
 
@@ -85,25 +86,26 @@ export class AppComponent {
     }
   }
 
-  calcular(): number {
+  calcular(): void {
     const segundoValor = parseFloat(this.display);
     let resultado: number;
 
-    if (isNaN(segundoValor)) {
+    // Verifica se o segundo valor é um número válido
+    if (isNaN(segundoValor) ||  (this.primeiroValor === null || this.operador === null) ){
       this.mensagemErro();
-      return 0;
-    }else if (this.primeiroValor === null || this.operador === null) {
-      return parseFloat(this.display || '0');
+      return;
     }
 
+    // Realiza a operação matemática solicitada
     switch (this.operador) {
       case '+': resultado = this.primeiroValor + segundoValor; break;
       case '-': resultado = this.primeiroValor - segundoValor; break;
       case '*': resultado = this.primeiroValor * segundoValor; break;
       case '/': 
+        // Evita a divisão por zero
         if (segundoValor === 0) {
           this.mensagemErro();
-          return 0;
+          return;
         }
 
         resultado = this.primeiroValor / segundoValor;
@@ -111,22 +113,25 @@ export class AppComponent {
       default: resultado = segundoValor;
     }
 
+    // Atualiza a tela com o  resultado e reseta o estado
     this.display = resultado.toString();
     this.primeiroValor = resultado;
     this.operador = null;
     this.aguardandoSegundoValor = true;
-    return resultado;
   }
   
+  // Método para exibir a mensagem de erro por um tempo
   mensagemErro(): void {
     this.display = 'Erro';
     setTimeout(() => { this.limparDisplay(); }, 750);
   }
 
+  // Limpa o display e reseta os estados
   limparDisplay(): void {
     this.display = '';
     this.primeiroValor = null;
     this.operador = null;
     this.aguardandoSegundoValor = false;
   }
+
 }

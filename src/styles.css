@@ -1,3 +1,16 @@
+body {
+  background-color: #009092;
+}
+
+.aplicação {
+  width: 260px;
+  margin: auto;
+  margin-top: 11%;
+  border: 1px solid #afafaf;
+  background-color: #afafaf;
+  border-radius: 16px;
+}
+
 .calculadora-container {
   width: 240px;
   margin: 20px auto;
@@ -40,9 +53,9 @@
 }
 
 .igual {
-  background: #007bff;
+  background: #00ffff;
   color: white;
-  grid-row: span 2;
+  grid-row: span 3;
 }
 
 .zero {
