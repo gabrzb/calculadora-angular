@@ -38,7 +38,7 @@
   <!-- Display -->
   <div class="display-area">
     <div class="expressao">{{ expressao }}</div>
-    <div class="resultado" [@animacaoDisplay]="displayAtual">
+    <div class="resultado" [@animacaoDisplay]="displayAtual" aria-live="polite" aria-atomic="true">
       @if (exibindoResultado) {
         <span class="sinal-igual">= </span>
       }
@@ -88,9 +88,9 @@
   <!-- Painel de Historico -->
   @if (historicoAberto) {
     <div class="historico-overlay" (click)="alternarHistorico()" @fadeOverlay></div>
-    <div class="historico-painel" @painelHistorico>
+    <div class="historico-painel" @painelHistorico role="dialog" aria-modal="true" aria-labelledby="historico-titulo" tabindex="-1">
       <div class="historico-header">
-        <h3>Historico</h3>
+        <h3 id="historico-titulo">Historico</h3>
         <div class="historico-acoes">
           <button class="limpar-btn" (click)="limparHistorico()">Limpar</button>
           <button class="fechar-btn" (click)="alternarHistorico()" aria-label="Fechar historico">

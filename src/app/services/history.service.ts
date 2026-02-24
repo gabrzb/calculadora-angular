@@ -40,7 +40,8 @@ export class HistoryService {
     try {
       const dados = localStorage.getItem(this.CHAVE_STORAGE);
       if (dados) {
-        this.historico = JSON.parse(dados);
+        const parsed = JSON.parse(dados);
+        this.historico = Array.isArray(parsed) ? parsed : [];
       }
     } catch {
       this.historico = [];

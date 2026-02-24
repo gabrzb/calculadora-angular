@@ -58,12 +58,18 @@ export class AppComponent {
   exibindoResultado = false;
   historicoAberto = false;
   temaClaro = false;
+  private errorResetTimer: ReturnType<typeof setTimeout> | null = null;
 
   get listaHistorico(): EntradaHistorico[] {
     return this.historico.obterHistorico();
   }
 
   executar(tecla: string): void {
+    if (this.errorResetTimer !== null) {
+      clearTimeout(this.errorResetTimer);
+      this.errorResetTimer = null;
+    }
+
     let estado: EstadoCalculo;
 
     switch (tecla) {
@@ -100,9 +106,10 @@ export class AppComponent {
         if (resultado.erro) {
           this.displayAtual = 'Erro';
           this.exibindoResultado = false;
-          setTimeout(() => {
+          this.errorResetTimer = setTimeout(() => {
             const limpo = this.calculadora.limpar();
             this.atualizarDisplay(limpo);
+            this.errorResetTimer = null;
           }, 750);
         } else if (
           resultado.expressaoCompleta !== null &&

@@ -107,6 +107,12 @@ export class CalculatorService {
     const resultado = this.executarOperacao();
 
     if (resultado === null) {
+      this.valorDisplay = 'Erro';
+      this.expressao = '';
+      this.primeiroValor = null;
+      this.operador = null;
+      this.aguardandoSegundoValor = false;
+
       return {
         estado: { displayAtual: 'Erro', expressao: '' },
         expressaoCompleta: null,
@@ -156,13 +162,14 @@ export class CalculatorService {
   private executarOperacao(): number | null {
     const segundoValor = parseFloat(this.valorDisplay);
     if (this.primeiroValor === null || this.operador === null) return null;
+    if (isNaN(segundoValor)) return null;
 
     switch (this.operador) {
       case '+': return this.primeiroValor + segundoValor;
       case '-': return this.primeiroValor - segundoValor;
       case '*': return this.primeiroValor * segundoValor;
       case '/': return segundoValor === 0 ? null : this.primeiroValor / segundoValor;
-      default: return segundoValor;
+      default: return null;
     }
   }
 
