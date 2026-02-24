@@ -1,63 +1,27 @@
+/* ===========================================
+   Estilos Globais - Calculadora Angular
+   =========================================== */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
 body {
-  background-color: #009092;
+  height: 100%;
 }
 
-.aplicação {
-  width: 260px;
-  margin: auto;
-  margin-top: 11%;
-  border: 1px solid #afafaf;
-  background-color: #afafaf;
-  border-radius: 16px;
-}
-
-.calculadora-container {
-  width: 240px;
-  margin: 20px auto;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  overflow: hidden;
-  font-family: Arial, sans-serif;
-}
-
-.display {
-  background: #f8f9fa;
-  padding: 20px;
-  text-align: right;
-  font-size: 1.8em;
-  border-bottom: 1px solid #ddd;
-}
-
-.teclado {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: #ddd;
-}
-
-.botao {
-  border: none;
-  padding: 15px;
-  font-size: 1.2em;
-  background: #fff;
-  cursor: pointer;
-}
-
-.botao:hover {
-  background: #e9e9e9;
-}
-
-.operador {
-  background: #f0f0f0;
-  font-weight: bold;
-}
-
-.igual {
-  background: #00ffff;
-  color: white;
-  grid-row: span 3;
-}
-
-.zero {
-  grid-column: span 2;
+body {
+  background-color: #E9E9E9;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

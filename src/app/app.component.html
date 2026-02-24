@@ -1,0 +1,117 @@
+<div class="calculadora" [class.tema-claro]="temaClaro">
+
+  <!-- Barra Superior -->
+  <div class="barra-superior">
+    <button
+      class="icone-btn"
+      (click)="alternarTema()"
+      [attr.aria-label]="temaClaro ? 'Modo escuro' : 'Modo claro'"
+    >
+      @if (temaClaro) {
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="5"/>
+          <line x1="12" y1="1" x2="12" y2="3"/>
+          <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+          <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>
+          <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+        </svg>
+      } @else {
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+        </svg>
+      }
+    </button>
+
+    <button class="icone-btn" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="currentColor">
+        <circle cx="12" cy="5" r="1.5"/>
+        <circle cx="12" cy="12" r="1.5"/>
+        <circle cx="12" cy="19" r="1.5"/>
+      </svg>
+    </button>
+  </div>
+
+  <!-- Display -->
+  <div class="display-area">
+    <div class="expressao">{{ expressao }}</div>
+    <div class="resultado" [@animacaoDisplay]="displayAtual">
+      @if (exibindoResultado) {
+        <span class="sinal-igual">= </span>
+      }
+      {{ displayAtual }}
+    </div>
+  </div>
+
+  <!-- Teclado -->
+  <div class="teclado">
+    <button class="botao funcao" (click)="executar('C')" aria-label="Limpar">C</button>
+    <button class="botao funcao" (click)="executar('backspace')" aria-label="Apagar">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M9 3H20a1 1 0 0 1 1 1v16a1 1 0 0 1-1 1H9l-7-9 7-9z"/>
+        <line x1="17" y1="9" x2="13" y2="15"/>
+        <line x1="13" y1="9" x2="17" y2="15"/>
+      </svg>
+    </button>
+    <button class="botao funcao" (click)="executar('%')" aria-label="Porcentagem">%</button>
+    <button class="botao operador" (click)="executar('/')" aria-label="Dividir">&#247;</button>
+
+    <button class="botao numero" (click)="executar('7')" aria-label="7">7</button>
+    <button class="botao numero" (click)="executar('8')" aria-label="8">8</button>
+    <button class="botao numero" (click)="executar('9')" aria-label="9">9</button>
+    <button class="botao operador" (click)="executar('*')" aria-label="Multiplicar">&#215;</button>
+
+    <button class="botao numero" (click)="executar('4')" aria-label="4">4</button>
+    <button class="botao numero" (click)="executar('5')" aria-label="5">5</button>
+    <button class="botao numero" (click)="executar('6')" aria-label="6">6</button>
+    <button class="botao operador" (click)="executar('-')" aria-label="Subtrair">&#8722;</button>
+
+    <button class="botao numero" (click)="executar('1')" aria-label="1">1</button>
+    <button class="botao numero" (click)="executar('2')" aria-label="2">2</button>
+    <button class="botao numero" (click)="executar('3')" aria-label="3">3</button>
+    <button class="botao operador" (click)="executar('+')" aria-label="Somar">+</button>
+
+    <button class="botao funcao icone-historico" (click)="alternarHistorico()" aria-label="Historico de calculos">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/>
+        <polyline points="12,6 12,12 16,14"/>
+      </svg>
+    </button>
+    <button class="botao numero" (click)="executar('0')" aria-label="0">0</button>
+    <button class="botao numero" (click)="executar('.')" aria-label="Ponto decimal">.</button>
+    <button class="botao igual" (click)="executar('=')" aria-label="Calcular">=</button>
+  </div>
+
+  <!-- Painel de Historico -->
+  @if (historicoAberto) {
+    <div class="historico-overlay" (click)="alternarHistorico()" @fadeOverlay></div>
+    <div class="historico-painel" @painelHistorico>
+      <div class="historico-header">
+        <h3>Historico</h3>
+        <div class="historico-acoes">
+          <button class="limpar-btn" (click)="limparHistorico()">Limpar</button>
+          <button class="fechar-btn" (click)="alternarHistorico()" aria-label="Fechar historico">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+              <line x1="18" y1="6" x2="6" y2="18"/>
+              <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div class="historico-lista">
+        @for (entrada of listaHistorico; track entrada.timestamp) {
+          <div class="historico-item">
+            <span class="historico-expressao">{{ entrada.expressao }}</span>
+            <span class="historico-resultado">= {{ formatarResultado(entrada.resultado) }}</span>
+          </div>
+        } @empty {
+          <p class="historico-vazio">Nenhum calculo registrado</p>
+        }
+      </div>
+    </div>
+  }
+
+</div>
