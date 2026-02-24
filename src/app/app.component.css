@@ -1,0 +1,361 @@
+/* ===========================================
+   Calculadora - Estilos do Componente
+   Variaveis CSS para temas escuro/claro
+   =========================================== */
+
+:host {
+  display: block;
+}
+
+/* ---- Tema Escuro (padrao) ---- */
+.calculadora {
+  --acento: #FF6B2C;
+  --acento-hover: #FF8142;
+  --acento-sombra: rgba(255, 107, 44, 0.35);
+  --fundo: #1C1C1E;
+  --texto: #FFFFFF;
+  --texto-dim: #636366;
+  --hover: rgba(255, 255, 255, 0.06);
+  --active: rgba(255, 255, 255, 0.12);
+  --separador: rgba(255, 255, 255, 0.06);
+
+  width: 360px;
+  max-width: 100vw;
+  margin: 0 auto;
+  background-color: var(--fundo);
+  border-radius: 28px;
+  padding: 12px 0 16px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.4);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* ---- Tema Claro ---- */
+.calculadora.tema-claro {
+  --fundo: #FAFAFA;
+  --texto: #1C1C1E;
+  --texto-dim: #8E8E93;
+  --hover: rgba(0, 0, 0, 0.04);
+  --active: rgba(0, 0, 0, 0.08);
+  --separador: rgba(0, 0, 0, 0.06);
+
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.15);
+}
+
+/* ===========================================
+   Barra Superior
+   =========================================== */
+
+.barra-superior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 20px 0;
+}
+
+.barra-centro {
+  display: flex;
+  gap: 2px;
+  background: var(--hover);
+  border-radius: 10px;
+  padding: 2px;
+}
+
+.icone-btn {
+  background: none;
+  border: none;
+  color: var(--texto-dim);
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.icone-btn:hover {
+  background: var(--hover);
+  color: var(--texto);
+}
+
+.icone-btn:active {
+  transform: scale(0.9);
+}
+
+.icone-btn:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.icone-btn:disabled:hover {
+  background: none;
+  color: var(--texto-dim);
+  transform: none;
+}
+
+.icone-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.acento-ativo {
+  background: var(--acento) !important;
+  color: white !important;
+  border-radius: 8px;
+}
+
+.acento-ativo:hover {
+  background: var(--acento-hover) !important;
+}
+
+/* ===========================================
+   Display
+   =========================================== */
+
+.display-area {
+  padding: 32px 24px 20px;
+  text-align: right;
+  min-height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.expressao {
+  font-size: 16px;
+  color: var(--texto-dim);
+  min-height: 22px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.resultado {
+  font-size: 44px;
+  font-weight: 300;
+  color: var(--texto);
+  line-height: 1.15;
+  word-break: break-all;
+  letter-spacing: -0.5px;
+}
+
+.sinal-igual {
+  color: var(--texto-dim);
+  font-weight: 300;
+}
+
+/* ===========================================
+   Teclado
+   =========================================== */
+
+.teclado {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+  padding: 0 12px 8px;
+}
+
+.botao {
+  background: none;
+  border: none;
+  padding: 16px 0;
+  font-size: 26px;
+  font-weight: 400;
+  cursor: pointer;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--texto);
+  transition: background-color 0.15s, transform 0.12s;
+  -webkit-tap-highlight-color: transparent;
+  min-height: 58px;
+}
+
+.botao:hover {
+  background: var(--hover);
+}
+
+.botao:active {
+  transform: scale(0.9);
+  background: var(--active);
+}
+
+/* Botoes de funcao (C, backspace, %) */
+.botao.funcao {
+  color: var(--acento);
+  font-weight: 500;
+}
+
+.botao.funcao svg {
+  width: 24px;
+  height: 24px;
+}
+
+/* Botoes de operador (+, -, x, /) */
+.botao.operador {
+  color: var(--acento);
+  font-size: 28px;
+  font-weight: 400;
+}
+
+/* Botao igual (circulo laranja) */
+.botao.igual {
+  background: var(--acento);
+  color: #FFFFFF;
+  border-radius: 50%;
+  width: 58px;
+  height: 58px;
+  padding: 0;
+  font-size: 30px;
+  font-weight: 400;
+  justify-self: center;
+  align-self: center;
+  box-shadow: 0 4px 16px var(--acento-sombra);
+  transition: background-color 0.15s, transform 0.12s, box-shadow 0.15s;
+}
+
+.botao.igual:hover {
+  background: var(--acento-hover);
+  box-shadow: 0 6px 20px var(--acento-sombra);
+}
+
+.botao.igual:active {
+  transform: scale(0.88);
+  box-shadow: 0 2px 8px var(--acento-sombra);
+}
+
+/* Botao de historico no teclado */
+.icone-historico svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ===========================================
+   Painel de Historico
+   =========================================== */
+
+.historico-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  border-radius: 28px;
+}
+
+.historico-painel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--fundo);
+  border-top: 1px solid var(--separador);
+  border-radius: 24px 24px 0 0;
+  padding: 20px 20px 24px;
+  z-index: 20;
+  max-height: 75%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.25);
+}
+
+.historico-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.historico-header h3 {
+  margin: 0;
+  color: var(--texto);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.historico-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.limpar-btn {
+  background: none;
+  border: none;
+  color: var(--acento);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 8px;
+  transition: background-color 0.15s;
+}
+
+.limpar-btn:hover {
+  background: var(--hover);
+}
+
+.fechar-btn {
+  background: none;
+  border: none;
+  color: var(--texto-dim);
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.15s, color 0.2s;
+}
+
+.fechar-btn:hover {
+  background: var(--hover);
+  color: var(--texto);
+}
+
+.fechar-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+.historico-lista {
+  overflow-y: auto;
+  flex: 1;
+}
+
+.historico-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--separador);
+}
+
+.historico-item:last-child {
+  border-bottom: none;
+}
+
+.historico-expressao {
+  color: var(--texto-dim);
+  font-size: 14px;
+}
+
+.historico-resultado {
+  color: var(--texto);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.historico-vazio {
+  text-align: center;
+  color: var(--texto-dim);
+  padding: 32px 0;
+  font-size: 14px;
+  margin: 0;
+}
