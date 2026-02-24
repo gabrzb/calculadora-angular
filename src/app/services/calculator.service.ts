@@ -18,7 +18,7 @@ export class CalculatorService {
   private expressao = '';
   private primeiroValor: number | null = null;
   private operador: string | null = null;
-  private aguardandoSegundoValor = false;
+  private aguardandoSegundoValor = true;
 
   obterEstado(): EstadoCalculo {
     return {
@@ -75,6 +75,14 @@ export class CalculatorService {
           this.valorDisplay = this.formatarNumero(resultado);
           this.primeiroValor = resultado;
           this.expressao = this.formatarNumero(resultado) + simbolo;
+        } else {
+          // Erros Intermediários (ex. divisão por zero)
+          this.valorDisplay = 'Erro';
+          this.expressao = '';
+          this.primeiroValor = null;
+          this.operador = null;
+          this.aguardandoSegundoValor = true;
+          return this.obterEstado();
         }
       }
     } else {
