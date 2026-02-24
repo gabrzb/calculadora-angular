@@ -1,58 +1,96 @@
-# 🧮 Calculadora Simples
+# 🧮 Calculadora Angular
 
-Este projeto foi criado utilizando Angular na qual a aplicação visa imitar uma calculadora simples e suas operações matemáticas.
+Calculadora web simples construída com **Angular 21** como projeto de estudo. Realiza as quatro operações matemáticas básicas com uma interface limpa e responsiva.
 
----
-
-## 📋 Pré-requisitos
-
-Antes de começar, verifique se você tem os seguintes requisitos instalados:
-
-- **Node.js e npm**: Baixe a versão recomendada [aqui](https://nodejs.org/).
-- **Angular CLI**: [Versão 19.2.4](https://github.com/angular/angular-cli).
-- **IDE (opcional)**: [VS Code](https://code.visualstudio.com/).
-- **Windows Powershell**: Crie um novo terminal através da IDE ou pelo sistema operacional.
+![Angular](https://img.shields.io/badge/Angular-21-DD0031?logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)
 
 ---
 
-## 🛠️ Como Executar o Projeto
+## ✨ Funcionalidades
 
-Siga estas etapas para configurar e executar o projeto localmente:
-
-1. **Clone o repositório:**
-```powershell
-git clone https://github.com/gabrzb/calculadora-angular.git
-```
-2. **Navegue até a pasta do projeto:**
-```powershell
-cd calculadora-angular
-```
-3. **Instale o Angular CLI:**
-```powershell
-npm i -g @angular/cli
-```
-4. **Instale todos os módulos necessários:**
-```powershell
-npm install
-```
-5. **Inicie a aplicação:**
-```powershell
-ng serve --open
-```
+- **Operações básicas** — adição, subtração, multiplicação e divisão
+- **Entrada decimal** — suporte a números com ponto flutuante
+- **Operações encadeadas** — o resultado parcial é calculado automaticamente ao adicionar um novo operador
+- **Tratamento de erros** — exibe "Erro" ao dividir por zero ou em entradas inválidas, com reset automático
+- **Limpar (C)** — reseta o display e o estado interno
 
 ---
 
-## ‼️ Observação:
+## 🛠️ Tecnologias
 
-Caso aconteça algum erro de política ao realizar alguma dessas etapas, realize o seguinte comando:
+| Tecnologia | Versão |
+|---|---|
+| Angular | 21 |
+| TypeScript | 5.7 |
+| Node.js | 18+ |
+| Zone.js | 0.15 |
+
+---
+
+## 📁 Estrutura do Projeto
+
+```
+src/
+├── index.html          # HTML raiz com container da aplicação
+├── main.ts             # Bootstrap da aplicação
+├── styles.css          # Estilos globais (layout, grid, botões)
+└── app/
+    ├── app.component.ts  # Componente único com template e lógica inline
+    └── app.config.ts     # Configuração do Angular (providers)
+```
+
+> O projeto utiliza um **componente standalone** com template inline — toda a UI e lógica ficam em um único arquivo.
+
+---
+
+## 🚀 Como Executar
+
+### Pré-requisitos
+
+- [Node.js](https://nodejs.org/) (v18 ou superior)
+- npm (incluso com o Node.js)
+
+### Instalação
 
 ```bash
+# Clone o repositório
+git clone https://github.com/gabrzb/calculadora-angular.git
+
+# Acesse a pasta do projeto
+cd calculadora-angular
+
+# Instale as dependências
+npm install
+```
+
+### Execução
+
+```bash
+# Inicie o servidor de desenvolvimento
+npx ng serve --open
+```
+
+A aplicação abrirá automaticamente em `http://localhost:4200`.
+
+### Build para Produção
+
+```bash
+npx ng build
+```
+
+Os arquivos de produção serão gerados na pasta `dist/`.
+
+---
+
+## 💡 Observação (Windows)
+
+Se encontrar erros de política de execução no PowerShell ao rodar os comandos, execute:
+
+```powershell
 Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
 ```
 
 Isso irá redefinir a política que pode interferir no processo descrito anteriormente.
 
 ---
-
-## 👨‍🎓 Responsável do Projeto: Gabriel Zaniqueli (2205156)
-
