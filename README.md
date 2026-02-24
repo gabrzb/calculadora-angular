@@ -1,6 +1,6 @@
 # 🧮 Calculadora Angular
 
-Calculadora web simples construída com **Angular 21** como projeto de estudo. Realiza as quatro operações matemáticas básicas com uma interface limpa e responsiva.
+Calculadora web simples construída com **Angular 21** como projeto de estudo. Realiza as quatro operações matemáticas básicas com uma interface limpa e responsiva. Visite a aplicação [aqui.](https://gabrzb.github.io/calculadora-angular/)
 
 ![Angular](https://img.shields.io/badge/Angular-21-DD0031?logo=angular&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)
